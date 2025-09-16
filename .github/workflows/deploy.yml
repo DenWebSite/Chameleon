@@ -1,10 +1,8 @@
 name: Deploy from dev branch
 
 on:
-  # Запускать при пуше в ветку dev
   push:
     branches: ["dev"]
-  # Разрешить запуск вручную из вкладки Actions
   workflow_dispatch:
 
 permissions:
@@ -23,7 +21,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          # Важно: указываем явно ветку dev
           ref: "dev"
 
       - name: Setup Pages
@@ -31,17 +28,14 @@ jobs:
 
       - name: Copy files from frontend/docs
         run: |
-          # Копируем всё содержимое frontend/docs
+          echo "Копируем файлы из frontend/docs/"
           cp -r frontend/docs/* ./
-          # Копируем скрытые файлы (если есть)
           cp -r frontend/docs/.* . 2>/dev/null || true
-          # Проверяем что скопировалось
+          echo "Содержимое после копирования:"
           ls -la
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./
+        uses: actions/upload-pages-artifact@v3 # ← ИЗМЕНИТЬ НА v3!
 
   deploy:
     environment:
@@ -52,4 +46,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v3 # ← ИЗМЕНИТЬ НА v3!
