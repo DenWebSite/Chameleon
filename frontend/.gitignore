@@ -1,6 +1,3 @@
-frontend/node_modules/
+node_modules/
 
-backend/database/db.db
-backend/venv/
-backend/config.py
 
