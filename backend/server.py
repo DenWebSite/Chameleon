@@ -48,6 +48,7 @@ def send_broadcast(message_text):
 def submit_contact():
     try:
         data = request.get_json()
+        ip_address = request.remote_addr
         if not data or 'name' not in data or 'contact' not in data or 'idea' not in data:
             return jsonify({
                 'error': 'Missing required fields (name, contact, idea)',
@@ -58,10 +59,18 @@ def submit_contact():
                 'error': 'Name must be at least 2 characters and idea at least 10 characters',
             }), 400
 
-        text = f"""Новое обращение:
-Имя: {data['name']}
-Email: {data['contact']}
-Сообщение: {data['idea']}"""
+        text = f"""🚨 *НОВОЕ ОБРАЩЕНИЕ* 🚨
+
+📋 *Данные клиента:*
+👤 Имя: {data['name']}
+📧 Email: `{data['contact']}`
+🌐 IP-адрес: `{ip_address}`
+
+💬 *Сообщение:*
+📝 {data['idea']}
+
+⏰ Время: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}
+"""
         
         logger.info(f"Получено новое обращение: {data['name']}")
         
