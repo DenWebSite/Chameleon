@@ -1,116 +1,115 @@
 .service {
-    &__list {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        justify-items: center;
-        row-gap: 60px;
-        column-gap: 20px;
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    row-gap: 60px;
+    column-gap: 20px;
 
-        @include tablet {
-            grid-template-columns: repeat(2, 1fr);
-
-        }
-
-        @include mobile {
-            grid-template-columns: repeat(1, 1fr);
-            row-gap: 20px;
-        }
-
-        &-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-
-            max-width: 330px;
-            padding: 28px 24px;
-            height: auto;
-            background-color: var(--color-dark);
-            border-radius: var(--br-big);
-
-            @include mobile-s {
-                max-width: 310px;
-                padding: 20px 20px;
-            }
-        }
-
-        &-img {
-            position: relative;
-
-            width: 73px;
-            height: 73px;
-            background-color: var(--color-gray);
-            border-radius: 50px;
-            margin-bottom: 22px;
-
-            & img {
-                position: absolute;
-                z-index: 1;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        &-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 8px;
-
-            @include mobile-s {
-                font-size: 16px;
-            }
-        }
-
-        &-descr {
-            font-size: 18px;
-            margin-bottom: 15px;
-            max-width: 280px;
-
-            @include mobile-s {
-                font-size: 16px;
-            }
-        }
-
-        &-btn {
-            display: block;
-            font-size: 18px;
-            font-weight: 700;
-            padding: 18px 80px;
-            margin-top: 22px;
-            transition: background-color .3s, border-color .3s;
-
-            @include hover {
-                background-color: transparent;
-                border-color: var(--color-accent);
-            }
-
-            @include mobile-s {
-                font-size: 16px;
-            }
-        }
-
-        &-sublist {
-
-            &-item {
-                position: relative;
-                font-size: 18px;
-                padding-left: 10px;
-
-                @include mobile-s {
-                    font-size: 16px;
-                }
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    width: 3px;
-                    height: 3px;
-                    background-color: var(--color-light);
-                    border-radius: 50px;
-                    left: 0px;
-                    top: 11px;
-                }
-            }
-        }
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
     }
+
+    @include mobile {
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: 20px;
+    }
+
+    &-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      max-width: 330px;
+      padding: 28px 24px;
+      height: auto;
+      background-color: var(--color-dark);
+      border-radius: var(--br-big);
+
+      @include mobile-s {
+        max-width: 310px;
+        padding: 20px 20px;
+      }
+    }
+
+    &-img {
+      position: relative;
+
+      width: 73px;
+      height: 73px;
+      background-color: var(--color-gray);
+      border-radius: 50px;
+      margin-bottom: 22px;
+
+      & img {
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+
+      @include mobile-s {
+        font-size: 16px;
+      }
+    }
+
+    &-descr {
+      font-size: 18px;
+      margin-bottom: 15px;
+      max-width: 280px;
+
+      @include mobile-s {
+        font-size: 16px;
+      }
+    }
+
+    &-btn {
+      display: block;
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 22px;
+      padding: 18px 80px;
+      border-radius: 20px;
+      transition: background-color 0.3s, border-color 0.3s;
+
+      @include hover {
+        background-color: transparent;
+        border-color: var(--color-accent);
+      }
+
+      @include mobile-s {
+        font-size: 16px;
+      }
+    }
+
+    &-sublist {
+      &-item {
+        position: relative;
+        font-size: 18px;
+        padding-left: 10px;
+
+        @include mobile-s {
+          font-size: 16px;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          width: 3px;
+          height: 3px;
+          background-color: var(--color-light);
+          border-radius: 50px;
+          left: 0px;
+          top: 11px;
+        }
+      }
+    }
+  }
 }

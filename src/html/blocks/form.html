@@ -1,37 +1,53 @@
-<section class="form modal" id="my-modal" style="display: none;">
-    <div class="container modal-content">
-        <div id="myBlock" class="hidden-block">
-
-            <form class="contact-form" action="#" method="POST">
-                <div class="form-header">
-                    <h2 class="form-title">Создаём вместе</h2>
-                    <p class="form-descr">
-                        Давайте создадим ваш проект вместе — мы готовы взяться за работу и предложить решения, которые
-                        раскроют потенциал вашей идеи.
-                    </p>
-                </div>
-                <div class="form-group">
-                    <label for="name">Ваше имя:</label>
-                    <input type="text" id="name" name="name" required placeholder="Ваше имя:" />
-                </div>
-
-                <div class="form-group">
-                    <label for="contact">Контакт:</label>
-                    <input type="text" id="contact" name="contact" required placeholder="Контакт:" />
-                </div>
-
-                <div class="form-group">
-                    <label for="idea">Ваша идея:</label>
-                    <textarea id="idea" name="idea" rows="3" required placeholder="Ваша идея:"></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-submit">Отправить</button>
-
-            </form>
-
-            <button class="btn btn-back" data-toggle-modal="my-modal">
-                <img src="./img/small-arrow-left.svg" alt="Закрыть">
-            </button>
+<section class="form modal" id="my-modal" style="display: block">
+  <div class="container modal-content">
+    <div id="myBlock" class="hidden-block">
+      <form class="contact-form" action="#" method="POST">
+        <div class="form-header">
+          <h2 class="form-title">Создаём вместе</h2>
+          <p class="form-descr">
+            Давайте создадим ваш проект вместе — мы готовы взяться за работу и
+            предложить решения, которые раскроют потенциал вашей идеи.
+          </p>
         </div>
+        <div class="form-group">
+          <label for="name">Ваше имя:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            placeholder="Ваше имя:"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="contact">Контакт:</label>
+          <input
+            type="text"
+            id="contact"
+            name="contact"
+            required
+            placeholder="Контакт:"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="idea">Ваша идея:</label>
+          <textarea
+            id="idea"
+            name="idea"
+            rows="3"
+            required
+            placeholder="Ваша идея:"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-submit">Отправить</button>
+      </form>
+
+      <button class="btn btn-back" data-toggle-modal="my-modal">
+        <img src="./img/small-arrow-left.svg" alt="Закрыть" />
+      </button>
     </div>
+  </div>
 </section>

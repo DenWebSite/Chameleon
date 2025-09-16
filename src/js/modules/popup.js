@@ -1,122 +1,164 @@
 export default function initToggleModal() {
-    const body = document.body;
-    let scrollPosition = 0;
+  const body = document.body;
+  let scrollPosition = 0;
 
-    document.addEventListener('click', (e) => {
-        const button = e.target.closest('[data-toggle-modal]');
-        if (!button) return;
+  document.addEventListener("click", (e) => {
+    const button = e.target.closest("[data-toggle-modal]");
+    if (!button) return;
 
-        e.preventDefault();
-        const modalId = button.getAttribute('data-toggle-modal');
-        const modal = document.getElementById(modalId);
+    e.preventDefault();
+    const modalId = button.getAttribute("data-toggle-modal");
+    const modal = document.getElementById(modalId);
 
-        if (!modal) {
-            console.warn(`Модальное окно с ID "${modalId}" не найдено.`);
-            return;
-        }
-
-        const isModalVisible = window.getComputedStyle(modal).display !== 'none';
-
-        if (isModalVisible) {
-            closeModal(modal);
-        } else {
-            openModal(modal);
-        }
-    });
-
-    // Закрытие по клику на фон
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal')) {
-            closeModal(e.target);
-        }
-    });
-
-    // Закрытие по Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            const openModals = document.querySelectorAll('.modal[style*="display: block"]');
-            if (openModals.length > 0) {
-                closeModal(openModals[0]);
-            }
-        }
-    });
-
-    // Обработчик отправки формы
-    document.addEventListener('submit', (e) => {
-        const form = e.target;
-        if (form.classList.contains('contact-form')) {
-            e.preventDefault();
-            simulateFormSubmission(form);
-        }
-    });
-
-    function openModal(modal) {
-        // Сохраняем позицию скролла ДО открытия модального окна
-        scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Показываем модальное окно
-        modal.style.display = 'flex';
-        body.classList.add('modal-open');
-
-        // Фиксируем позицию body
-        body.style.position = 'fixed';
-        body.style.top = `-${scrollPosition}px`;
-        body.style.width = '100%';
+    if (!modal) {
+      console.warn(`Модальное окно с ID "${modalId}" не найдено.`);
+      return;
     }
 
-    function closeModal(modal) {
-        // Скрываем модальное окно
-        modal.style.display = 'none';
-        body.classList.remove('modal-open');
+    const isModalVisible = window.getComputedStyle(modal).display !== "none";
 
-        // Восстанавливаем скролл
-        body.style.position = '';
-        body.style.top = '';
-        body.style.width = '';
-        window.scrollTo(0, scrollPosition);
-
-        // Очищаем форму при закрытии
-        const forms = modal.querySelectorAll('form');
-        forms.forEach(form => form.reset());
+    if (isModalVisible) {
+      closeModal(modal);
+    } else {
+      openModal(modal);
     }
+  });
 
-    function showSuccessModal() {
-        const successModal = document.getElementById('success-modal');
-        if (successModal) {
-            openModal(successModal);
-
-            // Автоматическое закрытие через 4 секунды
-            setTimeout(() => {
-                closeModal(successModal);
-            }, 4000);
-        }
+  // Закрытие по клику на фон
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal")) {
+      closeModal(e.target);
     }
+  });
 
-    function simulateFormSubmission(form) {
-        const submitBtn = form.querySelector('.btn-submit');
-        const originalText = submitBtn.textContent;
-
-        // Показываем загрузку
-        submitBtn.textContent = 'Отправка...';
-        submitBtn.disabled = true;
-
-        // Симуляция задержки отправки
-        setTimeout(() => {
-            // Закрываем форму
-            const formModal = form.closest('.modal');
-            if (formModal) {
-                closeModal(formModal);
-            }
-
-            // Очищаем форму
-            form.reset();
-
-            // Показываем окно успеха
-            showSuccessModal();
-
-            // Возвращаем кнопку в исходное состояние
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 1000);
+  // Закрытие по Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      const openModals = document.querySelectorAll(
+        '.modal[style*="display: block"]'
+      );
+      if (openModals.length > 0) {
+        closeModal(openModals[0]);
+      }
     }
+  });
+
+  // Обработчик отправки формы
+  document.addEventListener("submit", (e) => {
+    const form = e.target;
+    if (form.classList.contains("contact-form")) {
+      e.preventDefault();
+      submitContactForm(form);
+    }
+  });
+
+  function openModal(modal) {
+    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    modal.style.display = "flex";
+    body.classList.add("modal-open");
+    body.style.position = "fixed";
+    body.style.top = `-${scrollPosition}px`;
+    body.style.width = "100%";
+  }
+
+  function closeModal(modal) {
+    modal.style.display = "none";
+    body.classList.remove("modal-open");
+    body.style.position = "";
+    body.style.top = "";
+    body.style.width = "";
+    window.scrollTo(0, scrollPosition);
+
+    const forms = modal.querySelectorAll("form");
+    forms.forEach((form) => form.reset());
+  }
+
+  function showSuccessModal() {
+    const successModal = document.getElementById("success-modal");
+    if (successModal) {
+      openModal(successModal);
+
+      setTimeout(() => {
+        closeModal(successModal);
+      }, 4000);
+    }
+  }
+
+  function showErrorModal(message) {
+    const errorModal = document.getElementById("error-modal");
+    if (errorModal) {
+      const errorMessage = errorModal.querySelector(".error-message");
+      if (errorMessage) {
+        errorMessage.textContent =
+          message || "Произошла ошибка при отправке. Попробуйте еще раз.";
+      }
+      openModal(errorModal);
+    } else {
+      alert(message || "Произошла ошибка при отправке.");
+    }
+  }
+
+  async function submitContactForm(form) {
+    const submitBtn = form.querySelector(".btn-submit");
+    const originalText = submitBtn.textContent;
+    const originalHtml = submitBtn.innerHTML;
+
+    // Блокируем кнопку и показываем загрузку
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = `
+            <span class="loading-spinner"></span>
+            Отправка...
+        `;
+
+    try {
+      // Собираем данные формы
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get("name"),
+        contact: formData.get("contact"),
+        idea: formData.get("idea"),
+        // Дополнительная информация
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        pageUrl: window.location.href,
+        referrer: document.referrer,
+        screenResolution: `${window.screen.width}x${window.screen.height}`,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        language: navigator.language,
+      };
+
+      // Отправляем на сервер
+      const response = await fetch("https://ваш-сервер.com/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || `Ошибка сервера: ${response.status}`);
+      }
+
+      // Успешная отправка
+      const formModal = form.closest(".modal");
+      if (formModal) {
+        closeModal(formModal);
+      }
+
+      form.reset();
+      showSuccessModal();
+    } catch (error) {
+      console.error("Ошибка отправки формы:", error);
+      showErrorModal(error.message);
+    } finally {
+      // Восстанавливаем кнопку
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      submitBtn.innerHTML = originalHtml;
+    }
+  }
 }
