@@ -1,18 +1,32 @@
 from flask import Flask, request, jsonify
-import sqlite3 
-import logging
-from telegram import Bot
-from telegram.error import BadRequest, NetworkError
-import requests
-app = Flask(__name__)
-from datetime import datetime
 from config import *
 
+import sqlite3 
+
+import logging
+import requests
+
+from datetime import datetime
+
+
+app = Flask(__name__)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+def generate_broadcast_message(data, ip_address):
+    return f"""<b>🚨 НОВОЕ ОБРАЩЕНИЕ</b>
 
+<b>⏰ {datetime.now().strftime('%d.%m.%Y')}</b> {datetime.now().strftime('%H:%M:%S')}
+
+👤 <b>Имя:</b> {data['name']}
+📧 <b>Контакты:</b> <code>{data['contact']}</code>
+🌐 <b>IP-адрес:</b> <code>{ip_address}</code>
+
+
+<b>💬 Сообщение:</b>
+📝 {data['idea']}
+"""
 def send_broadcast(message_text):
     try:
         success_count = 0
@@ -24,26 +38,32 @@ def send_broadcast(message_text):
                     'text': message_text,
                     'parse_mode': 'HTML'
                 }
-                
                 response = requests.post(url, data=payload)
                 response_data = response.json()
-                
                 if response_data.get('ok'):
                     success_count += 1
                     logger.info(f"Сообщение отправлено пользователю {user_id}")
                 else:
-                    logger.error(f"Ошибка Telegram API для пользователя {user_id}: {response_data}")
-                    
+                    logger.error(f"Ошибка Telegram API для пользователя {user_id}: {response_data}")    
             except Exception as e:
                 logger.error(f"Ошибка при отправке пользователю {user_id}: {e}")
-
         logger.info(f"Сообщение отправлено {success_count}/{len(user_ids)} пользователям")
         return success_count
-        
+    
     except Exception as e:
         logger.error(f"Критическая ошибка при отправке сообщений: {e}")
         return 0
 
+def save_request_to_db(data):
+    db = sqlite3.connect('backend/database/db.db')
+    sql = db.cursor()
+    sql.execute(
+        """INSERT INTO back_requests (timestamp, user_name, user_contact, idea) 
+        VALUES (?,?,?,?)""", 
+        (datetime.now(), data['name'], data['contact'], data['idea'])
+    )
+    db.commit()
+    db.close()
 @app.route('/api/contact', methods=['POST'])
 def submit_contact():
     try:
@@ -59,32 +79,12 @@ def submit_contact():
                 'error': 'Name must be at least 2 characters and idea at least 10 characters',
             }), 400
 
-        text = f"""<b>🚨 НОВОЕ ОБРАЩЕНИЕ</b>
-
-<b>⏰ {datetime.now().strftime('%d.%m.%Y')}</b> {datetime.now().strftime('%H:%M:%S')}
-
-👤 <b>Имя:</b> {data['name']}
-📧 <b>Контакты:</b> <code>{data['contact']}</code>
-🌐 <b>IP-адрес:</b> <code>{ip_address}</code>
-
-
-<b>💬 Сообщение:</b>
-📝 {data['idea']}
-"""
+        
         
         logger.info(f"Получено новое обращение: {data['name']}")
         
-        send_broadcast(text)
-       
-        db = sqlite3.connect('backend/database/db.db')
-        sql = db.cursor()
-        sql.execute(
-            """INSERT INTO back_requests (timestamp, user_name, user_contact, idea) 
-            VALUES (?,?,?,?)""", 
-            (datetime.now(), data['name'], data['contact'], data['idea'])
-        )
-        db.commit()
-        db.close()
+        send_broadcast(generate_broadcast_message(data, ip_address))
+        save_request_to_db(data)
 
         return jsonify({
             'status': 'success',
