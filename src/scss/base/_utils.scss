@@ -1,0 +1,71 @@
+.none {
+	display: none !important;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
+
+.no-scroll {
+	overflow-y: hidden;
+}
+
+.btn {
+	background-color: var(--color-accent);
+	color: var(--color-light);
+	border: 1px solid var(--color-accent);
+	border-radius: var(--br-big);
+}
+
+.title {
+	position: relative;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 500;
+	margin-bottom: 40px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		width: 80px;
+		height: 2px;
+		background-color: var(--color-light);
+		margin-left: 20px;
+		margin-top: 14px;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		width: 80px;
+		height: 2px;
+		background-color: var(--color-light);
+		margin-left: -100px;
+		margin-top: 14px;
+	}
+}
+
+.section {
+	padding-top: 65px;
+	padding-bottom: 65px;
+
+	@include mobile {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+}
+
+.sticky {
+	position: fixed;
+	top: 0;
+	width: 100%
+}

@@ -1,0 +1,156 @@
+.hero {
+    margin-top: 170px;
+
+    @include mobile {
+        margin-top: 100px;
+    }
+
+    &__inner {
+        position: relative;
+        max-width: 910px;
+        margin: 0 auto;
+        text-align: center;
+
+        &::after {
+            content: '';
+            position: absolute;
+            background-image: url('./../img/icons/hero/circle.svg');
+            filter: blur(4px);
+            width: 45px;
+            height: 46px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            left: -120px;
+            top: 30px;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            background-image: url('./../img/icons/hero/fire.svg');
+            filter: blur(3px);
+            width: 50px;
+            height: 46px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            right: -140px;
+            top: 40px;
+
+            @include desktop {
+                display: none;
+            }
+
+            @include tablet {
+                display: block;
+                right: -10px;
+                top: 20px;
+            }
+        }
+    }
+
+    &__title {
+        position: relative;
+        font-size: 40px;
+        font-weight: 600;
+        margin-bottom: 50px;
+        text-align: center;
+
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: -1;
+
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, 150%);
+
+            width: 546px;
+            height: 112px;
+            background-color: var(--color-accent);
+            border-radius: var(--br-big);
+
+            filter: blur(150px);
+
+            @include mobile {
+                transform: translate(-50%, 200%);
+                width: 290px;
+                height: 60px;
+                filter: blur(100px);
+            }
+        }
+
+        @include mobile {
+            font-size: 32px;
+            margin-bottom: 36px;
+        }
+    }
+
+    &__descr {
+        font-size: 24px;
+        line-height: 29px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            background-image: url('./../img/icons/hero/tag.svg');
+            filter: blur(3px);
+            width: 45px;
+            height: 46px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            right: -150px;
+            top: 160px;
+            transform: rotate(15deg);
+
+            @include desktop {
+                display: none;
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            background-image: url('./../img/icons/hero/web.svg');
+            filter: blur(4px);
+            width: 55px;
+            height: 56px;
+            background-repeat: no-repeat;
+            background-position: center center;
+            left: -170px;
+            top: 200px;
+
+            @include tablet {
+                left: -40px;
+                top: 250px;
+            }
+        }
+
+        &+& {
+            margin-top: 34px;
+        }
+
+        @include mobile {
+            font-size: 18px;
+        }
+    }
+
+    &__btn {
+        padding: 20px 90px;
+        font-size: 24px;
+        display: inline-block;
+        margin-top: 60px;
+        border-radius: var(--br-small);
+        transition: background-color .3s, border-color .3s;
+
+        @include hover {
+            background-color: transparent;
+            border-color: var(--color-accent);
+        }
+
+        @include mobile-s {
+            width: 100%;
+            font-size: 20px;
+            padding: 20px;
+        }
+    }
+}

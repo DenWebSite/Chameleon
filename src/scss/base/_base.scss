@@ -1,0 +1,12 @@
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 70px;
+}
+
+body {
+	font-family: "Montserrat", sans-serif;
+	background-color: var(--color-ultra-dark);
+	color: var(--color-light);
+	overflow-x: hidden;
+	// font-family: var(--font-main);
+}
