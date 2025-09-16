@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeChameleon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>CodeChameleon</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-	<link rel="stylesheet" href="./css/main.css" />
-</head>
+  <body>
+    @@include('blocks/header.html')
 
-<body>
-	@@include('blocks/header.html')
+    <main class="main">
+      @@include('blocks/hero.html') @@include('blocks/service.html')
+      @@include('blocks/case.html') @@include('blocks/contacts.html')
+      @@include('blocks/success.html') @@include('blocks/form.html')
+    </main>
 
-	<main class="main">
+    @@include('blocks/footer.html')
 
-		@@include('blocks/hero.html')
-		@@include('blocks/service.html')
-		@@include('blocks/case.html')
-		@@include('blocks/contacts.html')
-		@@include('blocks/form.html')
-		@@include('blocks/success.html')
-
-	</main>
-
-
-	@@include('blocks/footer.html')
-
-	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	<script src="./js/index.bundle.js"></script>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/index.bundle.js"></script>
+  </body>
 </html>
