@@ -1,2 +1,0 @@
-TELEGRAM_TOKEN = '8282844289:AAGZ_wnz_gj-wKFMlD0MzdZv2YdaB9TCEDA'
-user_ids = [1845285427, 828370520] # добавить Мельника
