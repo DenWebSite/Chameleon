@@ -59,17 +59,17 @@ def submit_contact():
                 'error': 'Name must be at least 2 characters and idea at least 10 characters',
             }), 400
 
-        text = f"""🚨 *НОВОЕ ОБРАЩЕНИЕ* 🚨
+        text = f"""<b>🚨 НОВОЕ ОБРАЩЕНИЕ</b>
 
-📋 *Данные клиента:*
-👤 Имя: {data['name']}
-📧 Email: `{data['contact']}`
-🌐 IP-адрес: `{ip_address}`
+<b>⏰ {datetime.now().strftime('%d.%m.%Y')}</b> {datetime.now().strftime('%H:%M:%S')}
 
-💬 *Сообщение:*
+👤 <b>Имя:</b> {data['name']}
+📧 <b>Контакты:</b> <code>{data['contact']}</code>
+🌐 <b>IP-адрес:</b> <code>{ip_address}</code>
+
+
+<b>💬 Сообщение:</b>
 📝 {data['idea']}
-
-⏰ Время: {datetime.now().strftime('%d.%m.%Y %H:%M:%S')}
 """
         
         logger.info(f"Получено новое обращение: {data['name']}")
