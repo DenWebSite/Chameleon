@@ -3,6 +3,15 @@ let swiper = new Swiper(".mySwiper", {
     loop: true,
     keyboard: true,
 
+    autoplay: {
+        delay: 4000, // 4 секунды
+        disableOnInteraction: false, // не останавливать после ручного переключения
+        pauseOnMouseEnter: true, // пауза при наведении мыши
+    },
+
+    loop: true, // бесконечная прокрутка
+    speed: 600, // скорость анимации перехода
+
     // Навигация — пока отключена, будет управляться вручную
     navigation: {
         nextEl: ".swiper-button-next",
