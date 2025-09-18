@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from config import *
 
 import sqlite3 
@@ -10,6 +11,7 @@ from datetime import datetime
 
 
 app = Flask(__name__)
+CORS(app)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
