@@ -55,7 +55,7 @@ def send_broadcast(message_text):
         return 0
 
 def save_request_to_db(data):
-    db = sqlite3.connect('backend/database/db.db')
+    db = sqlite3.connect('database/db.db')
     sql = db.cursor()
     sql.execute(
         """INSERT INTO back_requests (timestamp, user_name, user_contact, idea) 
@@ -68,6 +68,7 @@ def save_request_to_db(data):
 def submit_contact():
     try:
         data = request.get_json()
+        print(data)
         ip_address = request.remote_addr
         if not data or 'name' not in data or 'contact' not in data or 'idea' not in data:
             return jsonify({
