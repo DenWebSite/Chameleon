@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeChameleon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>CodeChameleon</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-	<link rel="stylesheet" href="./css/main.css" />
-</head>
-
-<body>
-	<header class="header sticky" id="myHeader">
+  <body>
+    <header class="header sticky" id="myHeader">
     <div class="container">
         <div class="header__row">
             <a class="logo" href="#">
@@ -38,9 +42,8 @@
     </div>
 </header>
 
-	<main class="main">
-
-		<section class="hero section" id="about">
+    <main class="main">
+      <section class="hero section" id="about">
     <div class="container">
         <div class="hero__inner">
             <h1 class="hero__title">
@@ -60,8 +63,7 @@
             <a class="btn hero__btn" href="#" data-toggle-modal="my-modal">Создать с нами</a>
         </div>
     </div>
-</section>
-		<section class="service section" id="service">
+</section> <section class="service section" id="service">
     <div class="container">
         <div class="service__inner">
             <h2 class="service__title title">
@@ -193,7 +195,7 @@
         </div>
     </div>
 </section>
-		<section class="case section" id="case">
+      <section class="case section" id="case">
     <div class="container">
         <h2 class="title case__title">
             Кейсы
@@ -213,7 +215,7 @@
                                     резюме.</p>
 
                                 <div class="case__image-placeholder">
-                                    <img src="./img/logo.svg">
+                                    <img src="./img/case-metel.png">
                                 </div>
 
                                 <ul class="case__card-list">
@@ -223,10 +225,12 @@
                                     <li class="case__card-item">HTML5</li>
                                     <li class="case__card-item">Figma</li>
                                 </ul>
-                                <a class="btn case__btn" href="#">Перейти</a>
+                                <a class="case__btn" href="#">Заинтересовало?
+                                    <img src="./img/arrow-circle-q.svg" alt="">
+                                </a>
                             </div>
                             <div class="case__card-right">
-                                <img src="./img/logo.svg" alt="">
+                                <img src="./img/case-metel.png" alt="">
                             </div>
                         </div>
 
@@ -235,13 +239,13 @@
                     <div class="swiper-slide">
                         <div class="case__card">
                             <div class="case__card-left">
-                                <h3 class="case__card-title">DenWebSite</h3>
+                                <h3 class="case__card-title">Metelykx</h3>
                                 <p class="case__card-descr">Сайт для ознакомления с проектами metelykx, а также с
                                     доступом к
                                     резюме.</p>
 
                                 <div class="case__image-placeholder">
-                                    <img src="./img/logo.svg">
+                                    <img src="./img/case-metel.png">
                                 </div>
 
                                 <ul class="case__card-list">
@@ -251,10 +255,12 @@
                                     <li class="case__card-item">HTML5</li>
                                     <li class="case__card-item">Figma</li>
                                 </ul>
-                                <a class="btn case__btn" href="#">Перейти</a>
+                                <a class="case__btn" href="#">Заинтересовало?
+                                    <img src="./img/arrow-circle-q.svg" alt="">
+                                </a>
                             </div>
                             <div class="case__card-right">
-                                <img src="./img/logo.svg" alt="">
+                                <img src="./img/case-metel.png" alt="">
                             </div>
                         </div>
 
@@ -269,8 +275,7 @@
         </div>
 
     </div>
-</section>
-		<section class="contacts section" id="contacts">
+</section> <section class="contacts section" id="contacts">
     <div class="container">
         <h2 class="title contacts__title">Контакты</h2>
         <div class="contacts__inner">
@@ -315,7 +320,17 @@
         </div>
     </div>
 </section>
-		<section class="form modal" id="my-modal" style="display: block">
+      <section class="modal modal--success" id="success-modal" style="display: none;">
+    <div class="modal__overlay" data-close-modal>
+        <div class="modal__content modal__content--success">
+            <div class="success-message">
+                <div class="success-icon">✓</div>
+                <h3 class="success-title">Форма отправлена</h3>
+                <p class="success-text">Мы свяжемся с вами в ближайшее время</p>
+            </div>
+        </div>
+    </div>
+</section> <section class="form modal" id="my-modal" style="display: none">
   <div class="container modal-content">
     <div id="myBlock" class="hidden-block">
       <form class="contact-form" action="#" method="POST">
@@ -369,22 +384,9 @@
   </div>
 </section>
 
-		<section class="modal modal--success" id="success-modal" style="display: none;">
-    <div class="modal__overlay" data-close-modal>
-        <div class="modal__content modal__content--success">
-            <div class="success-message">
-                <div class="success-icon">✓</div>
-                <h3 class="success-title">Форма отправлена</h3>
-                <p class="success-text">Мы свяжемся с вами в ближайшее время</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </main>
 
-	</main>
-
-
-	<footer class="footer">
+    <footer class="footer">
 	<div class="container">
 		<div class="footer__inner">
 			<a class="footer__logo" href="#">
@@ -419,8 +421,7 @@
 	</div>
 </footer>
 
-	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-	<script src="./js/index.bundle.js"></script>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./js/index.bundle.js"></script>
+  </body>
 </html>

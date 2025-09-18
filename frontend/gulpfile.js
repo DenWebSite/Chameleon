@@ -35,5 +35,3 @@ gulp.task(
   )
 );
 
-// Задача по умолчанию
-gulp.task("default", gulp.series("docs", gulp.parallel("server:docs")));
